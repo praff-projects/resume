@@ -97,6 +97,8 @@ firebase deploy
 
 For automatic deployment on push to `main`, you need to configure repository secrets. The CI/CD pipeline will automatically build and deploy your resume to Firebase Hosting when you push changes to the main branch.
 
+> **📝 Note**: This method does **NOT** require any local Firebase CLI setup or token generation. Everything is done through the Firebase web console and GitHub interface.
+
 ### Step 1: Navigate to Repository Secrets
 
 1. Go to your GitHub repository
@@ -149,6 +151,8 @@ const firebaseConfig = {
 ```
 
 ### Step 4: Getting Firebase Service Account Key
+
+> **✅ No Local Setup Required**: This method only uses the Firebase web console - no local Firebase CLI installation needed.
 
 1. In Firebase Console, go to **Project Settings** (gear icon ⚙️)
 2. Click the **Service accounts** tab
@@ -211,6 +215,163 @@ After adding all secrets, your repository secrets should list:
 **❌ "Repository secret not found"**
 - Secret names are case-sensitive and must match exactly
 - Make sure you're adding secrets to the repository (not organization or environment)
+
+## Alternative Deployment Methods
+
+If you prefer not to use the automated GitHub Actions approach, here are alternative ways to deploy your resume:
+
+### Option 1: Manual Firebase Deployment (Web-Only)
+
+You can deploy without any local Firebase CLI setup:
+
+1. Build your project locally:
+   ```bash
+   pnpm build
+   ```
+
+2. Go to [Firebase Console](https://console.firebase.google.com/)
+3. Select your project
+4. Go to **Hosting** in the left sidebar
+5. Click **"Get started"** or **"Add another site"**
+6. Follow the setup wizard
+7. When prompted for files, upload the contents of your `dist` folder
+8. Your site will be deployed to `https://your-project-id.web.app`
+
+### Option 2: GitHub Pages Deployment
+
+Deploy to GitHub Pages instead of Firebase:
+
+1. Create `.github/workflows/github-pages.yml`:
+
+```yaml
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        
+    - name: Setup pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        version: latest
+        
+    - name: Install dependencies
+      run: pnpm install
+      
+    - name: Build
+      run: pnpm build
+      
+    - name: Setup Pages
+      uses: actions/configure-pages@v4
+      
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: ./dist
+        
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4
+```
+
+2. Enable GitHub Pages in repository settings:
+   - Go to **Settings** > **Pages**
+   - Source: **GitHub Actions**
+   - Your resume will be available at `https://yourusername.github.io/resume`
+
+### Option 3: Netlify Deployment
+
+Deploy to Netlify with automatic builds:
+
+1. Create `netlify.toml` in your project root:
+
+```toml
+[build]
+  publish = "dist"
+  command = "pnpm build"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+```
+
+2. Connect your GitHub repository to Netlify:
+   - Go to [netlify.com](https://netlify.com)
+   - Click **"Add new site"** > **"Import an existing project"**
+   - Connect to GitHub and select your repository
+   - Netlify will automatically deploy on every push
+
+### Option 4: Firebase CLI in GitHub Actions (Alternative)
+
+If you prefer using Firebase CLI commands in GitHub Actions instead of the action:
+
+```yaml
+name: Deploy with Firebase CLI
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        
+    - name: Setup pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        version: latest
+        
+    - name: Install dependencies
+      run: pnpm install
+      
+    - name: Build
+      run: pnpm build
+      
+    - name: Install Firebase CLI
+      run: npm install -g firebase-tools
+      
+    - name: Deploy to Firebase
+      run: firebase deploy --token "${{ secrets.FIREBASE_TOKEN }}"
+      env:
+        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+```
+
+For this method, you would need to:
+1. Install Firebase CLI locally: `npm install -g firebase-tools`
+2. Run: `firebase login:ci` 
+3. Copy the generated token to `FIREBASE_TOKEN` secret
+
+**Recommendation**: The original service account method (already implemented) is the most secure and doesn't require any local setup.
 
 ## Customization
 
