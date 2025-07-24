@@ -1,68 +1,190 @@
+/* Game Theme CSS Variables */
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --game-primary: #00ff41;
+  --game-secondary: #ffff00;
+  --game-accent: #ff4444;
+  --game-warning: #ff8800;
+  --game-info: #8844ff;
+  --game-success: #00ff88;
+  --game-bg-dark: #1a1a2e;
+  --game-bg-darker: #16213e;
+  --game-bg-alpha: rgba(0, 0, 0, 0.3);
+  
+  font-family: "VT323", monospace;
   line-height: 1.5;
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
+  color-scheme: dark;
+  color: var(--game-primary);
+  background-color: var(--game-bg-dark);
+  
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+* {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
+  min-height: 100vh;
+  background: linear-gradient(45deg, var(--game-bg-dark), var(--game-bg-darker));
+  overflow-x: hidden;
+}
+
+#root {
   min-height: 100vh;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* Game App Wrapper */
+.game-app {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+/* Accessibility and Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
-@media (prefers-color-scheme: light) {
+/* High contrast mode support */
+@media (prefers-contrast: high) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    --game-primary: #00ff00;
+    --game-secondary: #ffff00;
+    --game-accent: #ff0000;
   }
-  a:hover {
-    color: #747bff;
+}
+
+/* Print styles for traditional resume view */
+@media print {
+  body {
+    font-family: 'Times New Roman', serif;
+    font-size: 12pt;
+    line-height: 1.4;
+    color: #000;
+    background: #fff;
   }
+  
+  .game-app {
+    background: #fff;
+  }
+  
+  /* Hide game-specific elements in print */
+  .game-menu,
+  [style*="scanlines"],
+  [style*="glow"],
   button {
-    background-color: #f9f9f9;
+    display: none !important;
   }
+  
+  /* Show content in print-friendly format */
+  h1, h2, h3, h4 {
+    color: #000;
+    font-family: 'Times New Roman', serif;
+    text-shadow: none !important;
+  }
+  
+  p, li, span {
+    color: #000;
+    font-family: 'Times New Roman', serif;
+  }
+}
+
+/* Focus styles for accessibility */
+button:focus,
+button:focus-visible,
+[tabindex]:focus,
+[tabindex]:focus-visible {
+  outline: 3px solid var(--game-secondary);
+  outline-offset: 2px;
+}
+
+/* Link styles */
+a {
+  color: var(--game-info);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--game-secondary);
+}
+
+/* Scrollbar styling for webkit browsers */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--game-bg-darker);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--game-primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--game-secondary);
+}
+
+/* Selection styling */
+::selection {
+  background: var(--game-primary);
+  color: var(--game-bg-dark);
+}
+
+/* Responsive design helpers */
+@media (max-width: 768px) {
+  .game-app {
+    padding: 0;
+  }
+  
+  /* Ensure text remains readable on mobile */
+  [style*="Press Start 2P"] {
+    font-size: clamp(0.5rem, 2vw, 1rem) !important;
+  }
+}
+
+/* Game-specific utility classes */
+.retro-glow {
+  animation: retro-glow 2s ease-in-out infinite alternate;
+}
+
+.retro-blink {
+  animation: retro-blink 1.5s ease-in-out infinite;
+}
+
+.retro-pulse {
+  animation: retro-pulse 1s ease-in-out infinite;
+}
+
+@keyframes retro-glow {
+  from {
+    text-shadow: 0 0 20px var(--game-primary), 0 0 40px var(--game-primary);
+  }
+  to {
+    text-shadow: 0 0 10px var(--game-primary), 0 0 20px var(--game-primary), 0 0 30px var(--game-primary);
+  }
+}
+
+@keyframes retro-blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0.3; }
+}
+
+@keyframes retro-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
 }

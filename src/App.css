@@ -1,63 +1,125 @@
-/* Reset and base styles for resume */
-* {
-  box-sizing: border-box;
-}
+/* Game Theme App Styles */
 
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  line-height: 1.6;
-  color: #333;
-  background-color: #fff;
-}
-
-#root {
-  min-height: 100vh;
-}
-
-/* Resume specific styles */
-.resume-container {
-  max-width: 800px;
+/* Additional responsive helpers for game components */
+.game-container {
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem;
-  background-color: white;
+  padding: 1rem;
 }
 
-/* Print styles */
+/* Game menu specific styles */
+.game-menu-option {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.game-menu-option:hover {
+  transform: scale(1.05);
+}
+
+/* Game level cards */
+.game-level-card {
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.game-level-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Skill power-ups */
+.skill-powerup {
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-powerup::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.5s ease;
+}
+
+.skill-powerup:hover::before {
+  transform: translateX(100%);
+}
+
+/* Contact options */
+.contact-option {
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.contact-option:hover {
+  transform: scale(1.02);
+}
+
+/* Responsive typography scaling */
+@media (max-width: 480px) {
+  .game-title {
+    font-size: clamp(0.8rem, 5vw, 1.5rem) !important;
+  }
+  
+  .game-subtitle {
+    font-size: clamp(0.5rem, 3vw, 0.8rem) !important;
+  }
+  
+  .game-text {
+    font-size: clamp(0.4rem, 2.5vw, 0.7rem) !important;
+  }
+}
+
+/* Animation performance optimization */
+@media (prefers-reduced-motion: no-preference) {
+  .animated-element {
+    will-change: transform, opacity;
+  }
+}
+
+/* High contrast mode improvements */
+@media (prefers-contrast: high) {
+  .game-border {
+    border-width: 3px !important;
+  }
+  
+  .game-text-shadow {
+    text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000 !important;
+  }
+}
+
+/* Print-specific overrides */
 @media print {
-  body {
-    font-size: 12pt;
-    line-height: 1.4;
+  .game-app {
+    background: white !important;
+    color: black !important;
   }
   
-  .resume-container {
-    max-width: none;
-    margin: 0;
-    padding: 0.5in;
+  .game-app * {
+    background: transparent !important;
+    color: black !important;
+    text-shadow: none !important;
+    border-color: black !important;
+    box-shadow: none !important;
   }
   
-  a {
-    text-decoration: none;
-    color: inherit;
+  .game-app h1, .game-app h2, .game-app h3, .game-app h4 {
+    font-family: 'Times New Roman', serif !important;
+    font-weight: bold !important;
   }
   
-  h1 {
-    font-size: 18pt;
+  .game-app p, .game-app li, .game-app span {
+    font-family: 'Times New Roman', serif !important;
   }
   
-  h2 {
-    font-size: 14pt;
-  }
-  
-  h3 {
-    font-size: 13pt;
-  }
-  
-  h4 {
-    font-size: 12pt;
+  .game-app button,
+  .game-app [style*="position: absolute"],
+  .game-app [style*="animation"] {
+    display: none !important;
   }
 }
