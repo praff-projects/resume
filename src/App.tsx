@@ -38,7 +38,7 @@ function App() {
       startDate: 'Jun 2020',
       endDate: 'Dec 2021',
       description: [
-        'Built responsive web applications using React, TypeScript, and Firebase',
+        'Built responsive web applications using React, TypeScript, and MongoDB',
         'Developed RESTful APIs with Node.js and Express',
         'Optimized database queries resulting in 30% performance improvement',
         'Participated in agile development process and sprint planning'
@@ -72,7 +72,7 @@ function App() {
     },
     {
       category: 'Tools & Technologies',
-      items: ['Git', 'Docker', 'AWS', 'Firebase', 'GitHub Actions', 'Jest', 'Webpack']
+      items: ['Git', 'Docker', 'AWS', 'Vercel', 'GitHub Actions', 'Jest', 'Webpack']
     }
   ]
 
