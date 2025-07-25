@@ -1,8 +1,6 @@
 name: Deploy to GitHub Pages
 
 on:
-  push:
-    branches: [ main ]
   pull_request:
     branches: [ main ]
 
@@ -15,12 +13,6 @@ jobs:
       contents: read
       pages: write
       id-token: write
-    
-    # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-    # However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
-    concurrency:
-      group: "pages"
-      cancel-in-progress: false
     
     steps:
     - name: Checkout
@@ -46,16 +38,13 @@ jobs:
       run: pnpm build
       
     - name: Setup Pages
-      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
       uses: actions/configure-pages@v4
       
     - name: Upload artifact
-      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
       uses: actions/upload-pages-artifact@v3
       with:
         path: './dist'
         
     - name: Deploy to GitHub Pages
-      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
       id: deployment
       uses: actions/deploy-pages@v4
