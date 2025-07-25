@@ -12,7 +12,7 @@ function App() {
   // Professional resume data
   const headerData = {
     name: 'Professional Developer',
-    title: 'Full Stack Developer',
+    title: 'Software Engineer',
     email: 'contact@example.com',
     phone: '+61 (XXX) XXX-XXX',
     location: 'Sydney, Australia',
@@ -29,10 +29,10 @@ function App() {
       startDate: 'Sep 2022',
       endDate: 'Present',
       description: [
-        'Led development of React and Node.js applications for digital lending platform',
-        'Implemented cloud-based solutions using AWS services and serverless architecture',
-        'Built responsive web applications serving thousands of customers daily',
-        'Collaborated with cross-functional teams including product, design, and DevOps'
+        'Led product development of React and Node.js applications for digital lending platform serving 10,000+ customers',
+        'Designed and implemented scalable cloud solutions using AWS services, reducing infrastructure costs by 30%',
+        'Built user-centric features that increased customer engagement by 25% and reduced application processing time by 40%',
+        'Collaborated with product managers and UX designers to deliver customer-focused features using agile methodologies'
       ]
     },
     {
@@ -42,10 +42,10 @@ function App() {
       startDate: 'Nov 2021',
       endDate: 'Jun 2022',
       description: [
-        'Developed full-stack applications using modern React, TypeScript, and Node.js',
-        'Built RESTful APIs and GraphQL endpoints for mobile and web applications',
-        'Implemented real-time features using WebSocket connections',
-        'Optimized database queries and application performance'
+        'Developed product features using React, TypeScript, and Node.js that improved user retention by 20%',
+        'Built robust APIs and GraphQL endpoints supporting mobile and web products with 99.9% uptime',
+        'Implemented real-time messaging features using WebSocket connections, enhancing user experience',
+        'Optimized application performance through database query improvements, reducing page load times by 50%'
       ]
     },
     {
@@ -55,19 +55,19 @@ function App() {
       startDate: 'Feb 2021',
       endDate: 'Oct 2021',
       description: [
-        'Built responsive web applications for Australia\'s leading media company',
-        'Developed interactive features for streaming platforms and news websites',
-        'Collaborated with designers and backend teams to deliver pixel-perfect UIs',
-        'Optimized applications for performance and accessibility standards'
+        'Built responsive web applications for Australia\'s leading media company reaching millions of users daily',
+        'Developed interactive streaming platform features that increased viewer engagement by 15%',
+        'Collaborated with product teams and designers to deliver pixel-perfect UIs meeting accessibility standards',
+        'Optimized web performance achieving 95+ Lighthouse scores and improving user satisfaction metrics'
       ]
     }
   ]
 
   const educationData = [
     {
-      institution: 'University of Technology',
-      degree: 'Bachelor of Computer Science',
-      field: 'Software Engineering',
+      institution: 'University of Wollongong',
+      degree: 'Masters of Computer Science',
+      field: 'Machine Learning and Big Data',
       graduationDate: 'Dec 2020',
       gpa: '3.7',
       honors: ['Dean\'s List (6 semesters)', 'Software Engineering Award']
@@ -76,24 +76,24 @@ function App() {
 
   const skillsData = [
     {
-      category: 'Programming Languages',
-      items: ['JavaScript', 'TypeScript', 'Python', 'Java', 'C#', 'Go']
+      category: 'Product Engineering',
+      items: ['React', 'TypeScript', 'Node.js', 'Python', 'GraphQL', 'REST APIs', 'Microservices']
     },
     {
-      category: 'Frontend Technologies',
-      items: ['React', 'Vue.js', 'Angular', 'HTML5', 'CSS3', 'Sass', 'Tailwind CSS']
+      category: 'Cloud & Infrastructure',
+      items: ['AWS', 'Docker', 'Kubernetes', 'Serverless', 'CI/CD', 'GitHub Actions', 'Terraform']
     },
     {
-      category: 'Backend & Database',
-      items: ['Node.js', 'Express', '.NET Core', 'PostgreSQL', 'MongoDB', 'Redis', 'GraphQL']
+      category: 'Data & Analytics',
+      items: ['PostgreSQL', 'MongoDB', 'Redis', 'Machine Learning', 'Big Data', 'Analytics', 'A/B Testing']
     },
     {
-      category: 'Cloud & DevOps',
-      items: ['AWS', 'Azure', 'Docker', 'Kubernetes', 'GitHub Actions', 'Jenkins', 'Terraform']
+      category: 'Product Development',
+      items: ['Agile/Scrum', 'User Experience', 'Performance Optimization', 'Accessibility', 'Mobile-First Design']
     },
     {
-      category: 'Tools & Platforms',
-      items: ['Git', 'Jira', 'Confluence', 'Figma', 'Postman', 'VS Code', 'IntelliJ']
+      category: 'Collaboration Tools',
+      items: ['Jira', 'Confluence', 'Figma', 'Slack', 'Git', 'Code Review', 'Documentation']
     }
   ]
 
