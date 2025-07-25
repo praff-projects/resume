@@ -11,6 +11,7 @@
   --game-bg-alpha: rgba(0, 0, 0, 0.3);
   
   font-family: "VT323", monospace;
+  font-size: 18px;
   line-height: 1.5;
   font-weight: 400;
   color-scheme: dark;
@@ -153,7 +154,7 @@ a:hover {
   
   /* Ensure text remains readable on mobile */
   [style*="Press Start 2P"] {
-    font-size: clamp(0.5rem, 2vw, 1rem) !important;
+    font-size: clamp(0.8rem, 3vw, 1.4rem) !important;
   }
 }
 
