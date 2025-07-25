@@ -2,6 +2,12 @@
 
 A modern, responsive resume application built with React, TypeScript, and Vite. Features automatic deployment to GitHub Pages via GitHub Actions.
 
+## 🌐 Live Demo
+
+**[View Live Resume →](https://praff-projects.github.io/resume/)**
+
+Experience the resume application in action with the live demo hosted on GitHub Pages.
+
 ## Features
 
 - 📱 Responsive design that looks great on all devices
@@ -59,7 +65,7 @@ This project is configured to automatically deploy to GitHub Pages when you push
 
 2. **Push to main branch:**
    - Any push to the `main` branch will trigger the deployment workflow
-   - The site will be available at `https://[username].github.io/[repository-name]/`
+   - The site will be available at [https://praff-projects.github.io/resume/](https://praff-projects.github.io/resume/)
 
 3. **First deployment:**
    - After your first push to `main`, wait for the GitHub Action to complete
@@ -164,7 +170,7 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ---
 
-**Live Demo:** After deployment, your resume will be available at:
-`https://[your-username].github.io/[repository-name]/`
+**Live Demo:** Your resume is available at:
+[https://praff-projects.github.io/resume/](https://praff-projects.github.io/resume/)
 
 Perfect for sharing with potential employers, including in email signatures, or printing for interviews!
